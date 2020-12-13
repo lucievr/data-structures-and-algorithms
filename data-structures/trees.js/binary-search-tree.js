@@ -11,6 +11,7 @@
 //   /\      /\
 // 9   37  104 144
 // (example of a balanced BST)
+// in prod likely to use balanced BSTs which automatically rebalance themselves upon insertion, such as AVL Tree or Red Black Tree
 
 // Problem with unbalanced BST
 //       101
@@ -21,7 +22,7 @@
 //              \
 //              203
 
-// more resembles a linked list and instead of O(log n) operation it is more like O(n) while looping through all nodes
+// more resembles a linear linked list and instead of O(log n) operation it is more like O(n) while looping through all nodes
 
 // create one from scratch in js
 
