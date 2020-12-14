@@ -1,4 +1,13 @@
-// BFS
+// DFS
+// 3 types
+
+//     9
+//  4     20
+//1  6  15  170
+
+[1, 4, 6, 9, 15, 20, 170]; // InOrder
+[9, 4, 1, 6, 20, 15, 170]; // PreOrder
+[1, 6, 4, 15, 170, 20, 9]; // PostOrder
 
 class Node {
   constructor(value) {
@@ -130,7 +139,6 @@ class BinarySearchTree {
       }
     }
   }
-  // iterative BFS
   BreadthFirstSearch() {
     let currentNode = this.root;
     let list = [];
@@ -149,9 +157,7 @@ class BinarySearchTree {
     }
     return list;
   }
-  // recursive BFS
-  // can't declare variables inside the func as they would get reset each time
-  BreadthFirstSearchRecursive(queue, list) {
+  BreadthFirstSearchR(queue, list) {
     if (!queue.length) {
       return list;
     }
@@ -165,8 +171,50 @@ class BinarySearchTree {
       queue.push(currentNode.right);
     }
 
-    return this.BreadthFirstSearchRecursive(queue, list);
+    return this.BreadthFirstSearchR(queue, list);
   }
+  DFTInOrder() {
+    return traverseInOrder(this.root, []);
+  }
+  DFTPreOrder() {
+    return traversePreOrder(this.root, []);
+  }
+  DFTPostOrder() {
+    return traversePostOrder(this.root, []);
+  }
+}
+
+const traverseInOrder = (node, list) => {
+  if (node.left) {
+    traverseInOrder(node.left, list);
+  }
+  list.push(node.value);
+  if (node.right) {
+    traverseInOrder(node.right, list);
+  }
+  return list;
+}
+
+const traversePreOrder = (node, list) => {
+  list.push(node.value);
+  if (node.left) {
+    traversePreOrder(node.left, list);
+  }
+  if (node.right) {
+    traversePreOrder(node.right, list);
+  }
+  return list;
+}
+
+const traversePostOrder = (node, list) => {
+  if (node.left) {
+    traversePostOrder(node.left, list);
+  }
+  if (node.right) {
+    traversePostOrder(node.right, list);
+  }
+  list.push(node.value);
+  return list;
 }
 
 const tree = new BinarySearchTree();
@@ -177,9 +225,14 @@ tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
+// tree.remove(170);
+// JSON.stringify(traverse(tree.root))
 
 console.log('BFS', tree.BreadthFirstSearch());
-console.log('BFS', tree.BreadthFirstSearchR([tree.root], [])); // tree.root because this doesn't exist outside of the class
+console.log('BFS', tree.BreadthFirstSearchR([tree.root], []));
+console.log('DFSpre', tree.DFTPreOrder());
+console.log('DFSin', tree.DFTInOrder());
+console.log('DFSpost', tree.DFTPostOrder());
 
 //     9
 //  4     20
@@ -190,4 +243,4 @@ const traverse = (node) => {
   tree.left = node.left === null ? null : traverse(node.left);
   tree.right = node.right === null ? null : traverse(node.right);
   return tree;
-};
+}

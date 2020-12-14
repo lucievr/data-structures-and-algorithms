@@ -74,3 +74,15 @@ beasts.includes('Godzilla'); // true
 
 // Finding the shortest path
 // BFS (closer nodes)
+
+// GRAPH traversal/search
+// BFS - e.g. Amazon - closest related item to the last book we bought, FB - friends of friends suggestions, Insta recommendations
+// DFS - e.g. LinkedIn - what degree of connection I have with this CEO of a company, maze puzzle
+
+// for finding shortest paths of weighted graphs we would use the following:
+// 1. Bellman-Ford's algorithm
+// + can accommodate for negative weights between nodes
+// - takes longer to run, worst case time complexity of O(n^2)
+// 2. Dijkstra's algorithm
+// + faster and more efficient than the above
+// - doesn't work on negative weights
