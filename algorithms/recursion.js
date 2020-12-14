@@ -19,8 +19,7 @@ const inception = () => {
 // factorial 5!
 
 // 1! = 1 and 2! is 2 so we start from 2
-const findFactorialIterative = (number) => {
-  // O(n)
+const findFactorialIterative = (number) => { // O(n)
   let answer = 1;
   for (let i = 2; i <= number; i++) {
     answer = answer * i;
@@ -30,8 +29,7 @@ const findFactorialIterative = (number) => {
 };
 findFactorialIterative(5);
 
-const findFactorialRecursive = (number) => {
-  // O(n)
+const findFactorialRecursive = (number) => { // O(n)
   if (number < 2) {
     return 1;
   }

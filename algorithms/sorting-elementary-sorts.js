@@ -7,6 +7,8 @@
 
 // other issues with .sort() in js - it converts items to strings and sorts them according to unicode character codes
 // => doesn't work with numbers or localized characters with accents for example
+// under the hood, V8 Chrome's engine uses quick sort or insertion sort (for smaller arrays) for .sort() method
+// and Mozilla uses merge sort
 
 // ELEMENTARY SORTS (bubble sort, insertion sort, selection sort)
 
@@ -39,8 +41,6 @@ console.log(numbers);
 // O(n^2) time complexity
 // O(1) space complexity
 
-const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
-
 const selectionSort = (array) => {
   const length = array.length;
   for(let i = 0; i < length; i++){
@@ -63,8 +63,7 @@ selectionSort(numbers);
 console.log(numbers);
 
 // 3. insertion sort
-
-const numbers = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0];
+// is super fast if we have only a few items or items are mostly sorted
 
 const insertionSort = (array) => {
   const length = array.length;
@@ -89,3 +88,32 @@ const insertionSort = (array) => {
 
 insertionSort(numbers);
 console.log(numbers);
+
+//#1 - Sort 10 schools around your house by distance:
+// => insertion sort
+// just a few items, probably partially sorted
+
+//#2 - eBay sorts listings by the current Bid amount:
+// => radix or counting sort
+// bid amounts are integers within a fixed range (probably between 0 and $1000)
+
+//#3 - Sort scores on ESPN
+// => Quick sort
+// slightly better on memory than merge, very diverse data here
+
+//#4 - Massive database (can't fit all into memory) needs to sort through past year's user data
+// => Merge Sort
+// if memory is not an issue, I care more about speed/performance, especially if the data is so big, we don't want to risk worst case of quick sort O(n^2)
+
+//#5 - Almost sorted Udemy review data needs to update and add 2 new reviews
+// => Insertion Sort
+
+//#6 - Temperature Records for the past 50 years in Canada
+// radix or counting Sort
+// Quick sort if decimal places
+
+//#7 - Large user name database needs to be sorted. Data is very random.
+// probably Quick sort to save on memory (vs merge)
+
+//#8 - You want to teach sorting
+// Bubble sort or Selection sort
